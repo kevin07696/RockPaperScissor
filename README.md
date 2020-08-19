@@ -1,2 +1,2 @@
 # RockPaperScissor
-A Project to improve on my Javascript development
+A Project for the game rock, paper, scissor that lives on the console.
