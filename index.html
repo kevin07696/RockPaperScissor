@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        const choices = ['rock', 'paper', 'scissor'];
+        const computerChoice = () => {
+            return (choices[Math.floor(Math.random() * choices.length)]); 
+        }
+        const playerChoice = (round) => {
+            select = prompt(`Round ${round}: Choose either Rock, Paper, or Scissor.`).toLowerCase();
+            if(!choices.includes(select)) {
+                return playerSelection();
+            } 
+            return select;
+        }
+        const playRound = (round) => {
+            const playerSelection = playerChoice(round);
+            const computerSelection = computerChoice();
+            if(playerSelection === computerSelection) {
+                return "It's a tie!";
+            }
+            if(playerSelection === choices[0]) {
+                if(computerSelection === choices[1]) {
+                    return "You Lose! Paper beats Rock";
+                }
+                return "You Win! Rock beats Scissor";
+            }
+            if(playerSelection === choices[1]) {
+                if(computerSelection === choices[0]) {
+                    return "You Win! Paper beats Rock";
+                }
+                return "You Lose! Scissor beats Paper";
+            }
+            if(playerSelection === choices[2]) {
+                if(computerSelection === choices[1]) {
+                    return "You Win! Scissor beats Paper";
+                }
+                return "You Lose! Rock beats Scissor";
+            }
+        };
+        const game = () => {
+            let computerPoints = 0;
+            let playerPoints = 0;
+            for(i = 0; i < 5; i++) {
+                roundInstance = playRound(i+1);
+                console.log(roundInstance);
+                if(roundInstance.includes('Win')) {
+                    playerPoints++;
+                }
+                if(roundInstance.includes('Lose')) {
+                    computerPoints++;
+                }
+            }
+            console.log(`Computer's Score: ${computerPoints}, Your Score: ${playerPoints}`);
+            return playerPoints > computerPoints ? 'You Win!' : 'You Lose!';
+        }
+        console.log(game());
+    </script>
+</body>
+</html>
